@@ -6,7 +6,7 @@
 
 ### 第二讲 初识SLAM
 
-<img src="E:\ZHEDA\Senior\study\10.8/SLAM.png" />
+<img src="/img/SLAM.png" />
 
 ### Ubuntu18.04安装
 
@@ -90,7 +90,7 @@
 
   运行结果如下所示：
 
-  ![image-20221009181338394](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221009181338394.png)
+  ![image-20221009181338394](/img/01.png)
 
   然后用`make`指令对工程进行编译：
 
@@ -100,7 +100,7 @@
 
   结果如图所示：
 
-  ![image-20221009181610887](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221009181610887.png)
+  ![image-20221009181610887](/img/02.png)
 
   此时生成了一个`main`文件（在`CMakeList.txt`文件中声明的那个可执行程序的名字），执行他：
 
@@ -134,7 +134,7 @@
   }
   ```
 
-  ![image-20221010173121599](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010173121599.png)
+  ![image-20221010173121599](/img/03.png)
 
   
 
@@ -144,7 +144,7 @@
   add_library( hello libHelloSLAM.cpp )
   ```
 
-  ![image-20221010212942052](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010212942052.png)
+  ![image-20221010212942052](/img/04.png)
 
   这条命令告诉cmake，我们想把这个文件编译成一个叫做`hello`的库。然后，和上面一样，使用cmake编译整个工程：
 
@@ -156,11 +156,11 @@
   make
   ```
 
-  ![image-20221010212923534](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010212923534.png)
+  ![image-20221010212923534](/img/05.png)
 
   这时在build文件夹中就会生成一个`libhello.a`文件，这就是我们得到的库。
 
-  ![image-20221010213011428](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010213011428.png)
+  ![image-20221010213011428](/img/06.png)
 
   在Linux中，库文件分为**静态库**和**共享库**两种。静态库以.a为后缀名，共享库以.so结尾。所有库都是一些函数打包后的集合，差别在于静态库每次被调用都会生成一个副本，而共享库则只有一个副本，更省空间。
 
@@ -170,7 +170,7 @@
   add_library( hello_shared SHARED libHelloSLAM.cpp )
   ```
 
-  ![image-20221010213522329](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010213522329.png)
+  ![image-20221010213522329](/img/07.png)
 
   为了让别人知道库中的内容，我们需要提供一个**头文件**，说明这些库中的内容。
 
@@ -201,7 +201,7 @@
   target_link_libraries(useHello hello_shared)
   ```
 
-  ![image-20221010221636249](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010221636249.png)
+  ![image-20221010221636249](/img/08.png)
 
   终端cmake：
 
@@ -213,11 +213,11 @@
 
   后得到的结果：
 
-  ![image-20221010221212902](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010221212902.png)
+  ![image-20221010221212902](/img/09.png)
 
   > 在配置过程中碰到了这个问题：
   >
-  > ![image-20221010220939137](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010220939137.png)
+  > ![image-20221010220939137](/img/10.png)
   >
   > 后来发现是`CMakeLists.txt`拼写出了问题...
 
@@ -229,7 +229,9 @@
 
   结果：
 
-  ![image-20221010221600304](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221010221600304.png) 
+  ![image-20221010221600304](/img/11.png)
+  
+   
 
 ### 配置CLion
 
@@ -243,7 +245,7 @@
 >
 > 最终结果：
 >
-> ![image-20221012175633593](C:\Users\77963\AppData\Roaming\Typora\typora-user-images\image-20221012175633593.png)
+> ![image-20221012175633593](/img/12.png)
 
 ### 配置KDevelop
 
@@ -268,11 +270,49 @@ sudo apt-get install automake autoconf g++ libtool cmake
 
 ## 二、Git学习
 
-### Git下载参考csdn
+### Git下载参考
 
-> 参考博客：[Git 详细安装教程（详解 Git 安装过程的每一个步骤](http://t.csdn.cn/1zC1a)
+> 参考博客：[Git 详细安装教程（详解 Git 安装过程的每一个步骤）](http://t.csdn.cn/1zC1a)
 
 ### Git学习
 
 > 参考学习网址：[Atlassian 的简明 Git 教程](https://www.atlassian.com/git/tutorials)
 
+基础用法：
+
+创建一个版本库：
+
+```c
+$ mkdir learngit
+$ cd learngit
+$ pwd
+```
+
+将目录变成git可以管理的仓库
+
+```c
+$ git init
+```
+
+将文件添加到仓库只需要两步：
+
+第一步，用命令`git add`将文件添加到仓库
+
+```C
+$ git add README.md
+```
+
+第二步，用命令`git commit`将文件提交到仓库：
+
+```
+$ git commit -m "wrote a readme file"
+[master (root-commit) eaadf4e] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.md
+```
+
+关于`git commit`命令，`-m`后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。
+
+> 在与github同步时遇到问题，出现输入password的选项，输入github密码后无果，查阅资料发现是ssh没有配置好，参考博客：
+>
+> [github 配置了公钥依旧提示git@github.com‘s password: Permission denied, please try again. 的解决办法](http://t.csdn.cn/WkIJs)
